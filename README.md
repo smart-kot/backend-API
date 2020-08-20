@@ -1,7 +1,14 @@
 <p align="center"><img src="./img/smartkot_laravel.png" width="400"></p>
 
 <p align="center">
-<a href="https://travis-ci.org/laravel/framework"><img src="https://travis-ci.org/laravel/framework.svg" alt="Build Status"></a>
+<a href="https://travis-ci.org/laravel/framework"><img src="https://img.shields.io/github/workflow/status/smart-kot/backend-API/Laravel/master?label=Laravel%20Master%20Build&logo=laravel&logoColor=white" alt="Build Status"></a>
+<p>
+
+<p align="center">
+<a href="https://travis-ci.org/laravel/framework"><img src="https://img.shields.io/github/workflow/status/smart-kot/backend-API/Laravel/dev?label=Laravel%20Dev%20Build&logo=laravel&logoColor=white" alt="Build Status"></a>
+<p>
+
+<p align="center">
 <a href="https://packagist.org/packages/laravel/framework"><img src="https://poser.pugx.org/laravel/framework/v/stable.svg" alt="Latest Stable Version"></a>
 <a href="https://packagist.org/packages/laravel/framework"><img src="https://poser.pugx.org/laravel/framework/license.svg" alt="License"></a>
 </p>
