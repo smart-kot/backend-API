@@ -17,3 +17,13 @@ use Illuminate\Support\Facades\Route;
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
+
+Route::post('/user', function (Request $request) {
+    $data = $request->all();
+
+    $model = \App\User::create(
+        $data
+    );
+
+    return \App\User::find($model->id);
+});
