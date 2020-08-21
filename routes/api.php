@@ -21,9 +21,24 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 Route::post('/user', function (Request $request) {
     $data = $request->all();
 
-    $model = \App\User::create(
-        $data
-    );
+    try {
+        $model = \App\User::create(
+            $data
+        );
+    } catch (\Illuminate\Database\QueryException $exeption) {
+        // if ((int)$exeption->errorInfo[2] == 1062) {
+        //     abort(409, 'This email address already exists');
+        // } else {
+        //     abort(400, 'Bad Request');
+        // }
 
-    return \App\User::find($model->id);
+        $returnData = array(
+            'status' => 'error',
+            'code' => '409',
+            'message' => 'This email address already exists!',
+            'exeption' => $exeption
+        );
+
+        return Response::json($returnData, 409);
+    }
 });
