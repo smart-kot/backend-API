@@ -26,16 +26,10 @@ Route::post('/user', function (Request $request) {
             $data
         );
     } catch (\Illuminate\Database\QueryException $exeption) {
-        // if ((int)$exeption->errorInfo[2] == 1062) {
-        //     abort(409, 'This email address already exists');
-        // } else {
-        //     abort(400, 'Bad Request');
-        // }
-
         $returnData = array(
             'status' => 'error',
             'code' => '409',
-            'message' => 'This email address already exists!',
+            'message' => 'Username or email address already exists!',
             'exeption' => $exeption
         );
 
