@@ -26,13 +26,14 @@ Route::post('/user', function (Request $request) {
             $data
         );
     } catch (\Illuminate\Database\QueryException $exeption) {
-        $returnData = array(
-            'status' => 'error',
-            'code' => '409',
-            'message' => 'Username or email address already exists!',
-            'exeption' => $exeption
-        );
-
+        if ($exeption->errorInfo[1] == 1062) {
+            $returnData = array(
+                'status' => 'error',
+                'code' => '409',
+                'message' => 'Username or email address already exists!'
+            );
+        }
+        
         return Response::json($returnData, 409);
     }
 });
