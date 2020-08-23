@@ -2,6 +2,7 @@
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\DB;
 
 /*
 |--------------------------------------------------------------------------
@@ -35,5 +36,30 @@ Route::post('/user', function (Request $request) {
         }
         
         return Response::json($returnData, 409);
+    }
+});
+
+Route::post('/login', function (Request $request) {
+    $data = $request->all();
+    $password = $data['password'];
+    $user;
+    if (array_key_exists('email', $data)) {
+        $email = $data['email'];
+        $user = DB::table('users')
+            ->where('email', strtolower($email))
+            ->where('password', $password)
+            ->first();
+    } else {
+        $username = $data['username'];
+        $user = DB::table('users')
+            ->where('username', $username)
+            ->where('password', $password)
+            ->first();
+    }
+
+    if ($user === null) {
+        abort(401);
+    } else {
+        return Response::json($user);
     }
 });
